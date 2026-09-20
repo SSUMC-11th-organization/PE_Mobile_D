@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import 'app_svg_icon.dart';
 
 /// 모든 화면에서 공통으로 쓰는 AppBar.
 /// 색, 글꼴, 정렬은 AppTheme의 AppBarTheme을 따른다.
@@ -25,14 +26,8 @@ class MovieLogAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: showBackButton
           ? IconButton(
               onPressed: () => Navigator.of(context).maybePop(),
-              icon: SvgPicture.asset(
+              icon: const AppSvgIcon(
                 'assets/icons/arrow_back.svg',
-                width: 24,
-                height: 24,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.onSurface,
-                  BlendMode.srcIn,
-                ),
                 semanticsLabel: '뒤로가기',
               ),
             )

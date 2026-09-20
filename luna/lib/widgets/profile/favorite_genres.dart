@@ -21,14 +21,16 @@ class FavoriteGenres extends StatelessWidget {
         Wrap(
           spacing: 8, // Chip 사이 가로 간격
           runSpacing: 8, // 줄 사이 세로 간격
-          children: [
-            for (final genre in genres)
-              Chip(
-                label: Text(genre),
-                // 기본 터치 영역(48)을 줄여 시안의 Chip 높이(32)에 맞춤
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-          ],
+          // map: 장르 문자열 하나마다 Chip 하나를 만들어 List로 변환
+          children: genres
+              .map(
+                (genre) => Chip(
+                  label: Text(genre),
+                  // 기본 터치 영역(48)을 줄여 시안의 Chip 높이(32)에 맞춤
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+              )
+              .toList(),
         ),
       ],
     );
