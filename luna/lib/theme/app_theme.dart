@@ -105,7 +105,7 @@ abstract final class AppTheme {
             ? AppColors.error100
             : AppColors.surfaceLow,
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       hintStyle: AppTextStyles.bodyLarge.copyWith(color: AppColors.neutral800),
       errorStyle: AppTextStyles.labelSmall.copyWith(
         fontSize: 12,
