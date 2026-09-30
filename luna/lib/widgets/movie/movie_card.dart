@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../models/movie.dart';
+import 'poster_badge.dart';
 
 /// 포스터 + 제목 + 연도·장르를 보여주는 공통 영화 카드.
 /// 누르면 영화 ID를 Path Parameter로 담아 상세 화면을 push한다.
@@ -24,13 +25,20 @@ class MovieCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                movie.posterAsset,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(movie.posterAsset, fit: BoxFit.cover),
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: PosterBadge(text: '★ ${movie.rating}'),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 8),
