@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'sign_up_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -48,13 +47,8 @@ class StartScreen extends StatelessWidget {
               ),
               const Spacer(),
               FilledButton(
-                onPressed: () {
-                  Navigator.of(context).push( // 회원가입 화면으로 이동
-                    MaterialPageRoute<void>(
-                      builder: (_) => const SignUpScreen(),
-                    ),
-                  );
-                },
+                // 회원가입 화면을 위에 쌓음 (뒤로가기로 시작 화면 복귀 가능)
+                onPressed: () => context.push('/sign-up'),
                 child: const Text('시작하기'),
               ),
             ],
