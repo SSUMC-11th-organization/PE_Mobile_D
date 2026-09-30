@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-
-import 'start_screen.dart';
+import 'package:movielog/router/app_router.dart';
+import 'package:movielog/theme/app_theme.dart';
 
 class MovieLogApp extends StatelessWidget {
   const MovieLogApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'MovieLog',
-      theme: ThemeData(useMaterial3: true),
-      home: const StartScreen(),
+      theme: AppTheme.light,
+      routerConfig: AppRouter.router, // GoRouter 설정 적용
     );
   }
 }
