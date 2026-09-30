@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 /// 홈·영화·마이 탭이 공유하는 NavigationBar 레이아웃.
-/// body에는 ShellRoute가 전달한 현재 탭 화면(child)만 바뀌어 표시된다.
+/// body의 navigationShell이 탭별 Navigator를 IndexedStack으로 유지한다.
 class MainScreen extends StatelessWidget {
-  const MainScreen({
-    super.key,
-    required this.currentIndex,
-    required this.child,
-  });
+  const MainScreen({super.key, required this.navigationShell});
 
-  final int currentIndex; // 현재 URL에서 계산한 선택 탭
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
-  static const _tabPaths = ['/home', '/movies', '/my'];
+  void _onDestinationSelected(int index) {
+    navigationShell.goBranch(
+      index,
+      // 이미 선택된 탭을 다시 누르면 그 탭의 첫 화면으로 돌아감
+      initialLocation: index == navigationShell.currentIndex,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: child,
+      body: navigationShell,
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentIndex,
-        // 탭 전환은 화면을 쌓지 않고 현재 위치 자체를 바꾸므로 go 사용
-        onDestinationSelected: (index) => context.go(_tabPaths[index]),
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: _onDestinationSelected,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),

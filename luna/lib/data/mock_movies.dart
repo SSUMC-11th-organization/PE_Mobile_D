@@ -104,10 +104,10 @@ Movie? findMovieById(int? id) {
   return null;
 }
 
-/// 선택한 장르의 영화만 반환한다. genre가 null이면 전체 목록.
-List<Movie> filterMoviesByGenre(String? genre) {
-  if (genre == null) return movies;
-  return movies.where((movie) => movie.genre == genre).toList();
+/// 선택한 장르 중 하나에 해당하는 영화만 반환한다. 선택이 없으면 전체 목록.
+List<Movie> filterMoviesByGenres(Set<String> selectedGenres) {
+  if (selectedGenres.isEmpty) return movies;
+  return movies.where((movie) => selectedGenres.contains(movie.genre)).toList();
 }
 
 /// 평균 평점이 높은 순으로 정렬한 인기 영화 목록.

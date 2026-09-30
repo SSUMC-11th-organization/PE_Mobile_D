@@ -20,7 +20,7 @@ class StartScreen extends StatelessWidget {
             children: [
               // UI 요소들을 세로로 배치
               Text(
-                'FLUTTER 1주차',
+                'FLUTTER 3주차',
                 style: textTheme.labelSmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),

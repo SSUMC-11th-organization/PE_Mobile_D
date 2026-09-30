@@ -26,8 +26,9 @@ class PopularMovieSection extends StatelessWidget {
             children: [
               Text('인기 영화', style: theme.textTheme.headlineMedium),
               TextButton(
-                // 영화 탭으로 전환 (NavigationBar 선택 상태도 함께 바뀜)
-                onPressed: () => context.go('/movies'),
+                // 영화 탭으로 전환. go('/movies')와 달리 영화 탭의 필터·상세 상태를 유지
+                onPressed: () =>
+                    StatefulNavigationShell.of(context).goBranch(1),
                 child: const Text('전체보기 ›'),
               ),
             ],
